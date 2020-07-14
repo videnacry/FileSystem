@@ -1,3 +1,4 @@
+
 let info = {};
 info["Size"] = {};
 info["Type"] = {};
@@ -39,6 +40,18 @@ $.ajax({
 
 // add event listeners
 
-$(".nav-item").contextmenu(function() {
-    alert( "Hello World!" );
+// $("#directory-nav .nav-item").contextmenu(function(event) {
+//     event.preventDefault();
+//     let modalModify = $(".modal-modify");
+
+//     console.log("estas hacinedo click");
+//     // alert("hola");
+// });
+
+$("body").contextmenu(function(event){
+    event.preventDefault();
+    var contextElement = document.getElementById("context-menu");
+    contextElement.style.top = event.offsetY + "px";
+    contextElement.style.left = event.offsetX + "px";
+    contextElement.classList.add("active");
   });

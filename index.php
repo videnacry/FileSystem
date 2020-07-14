@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
-                    <div class="col-12 justify-content-center d-flex p-4"><button class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
+                    <div id="button-new-item" class="col-12 justify-content-center d-flex p-4"><button class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
                     <ul id="directory-nav" class="navbar-nav ml-2">
                     </ul>
                 </div>
@@ -39,73 +39,64 @@
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                     </ul>
                 </div>
-                <script>
-                    let userEmail = "beron@carlota.com"
-                    let path = "json/" + userEmail + ".json"
-                    let storage
-                    let directoryNav = document.getElementById("directory-nav")
-                    let liHTML = document.createElement("li")
-                    liHTML.className = "nav-item ml-2"
-                    let aHTML = document.createElement("a")
-                    aHTML.className = "nav-link"
-                    aHTML.setAttribute("onclick","printChildren()")
-                    let caretHTML = document.createElement("i")
-                    caretHTML.className = "fas fa-caret-right mx-1"
-                    let folderHTML = document.createElement("i")
-                    folderHTML.className = "fas fa-folder mx-1"
-                    let spanHTML = document.createElement("span")
-                    liHTML.appendChild(aHTML)
-                    aHTML.appendChild(caretHTML)
-                    aHTML.appendChild(folderHTML)
-                    aHTML.appendChild(spanHTML)
-                    $.getJSON(path,function(data,statusText,jqXHR){
-                        storage = data
-                        print(storage, directoryNav)
-                    })
-                    function print(pObject, parent){
-                        if(Object.keys(pObject).length > 0){
-                            for(let i in pObject){
-                                if(i=="Info" || i.includes("."))continue
-                                spanHTML.textContent = i
-                                let liHTMLClone = liHTML.cloneNode(true)
-                                liHTMLClone.dataset.key = i
-                                parent.appendChild(liHTMLClone)                         
-                            }
-                        }
-                    }
-                    function getPath(elementHTML){
-                        let pathArray = []
-                        let target = elementHTML
-                        pathArray.push(target.dataset.key)
-                        while(target.parentElement.dataset.key){
-                            pathArray.unshift(target.parentElement.dataset.key)
-                            target = target.parentElement
-                        } 
-                        return pathArray
-                    }
-                    function getFolder(pathArray,pStorage){
-                        console.log(pathArray)
-                        let folder = pStorage
-                        for(let i in pathArray){
-                            folder = folder[pathArray[i]]
-                        }
-                        return folder
-                    }
-                    function printChildren(){
-                        let open = false
-                        let parent = event.currentTarget.parentElement
-                        if(parent.getElementsByTagName("li").length > 0){
-                            for(let i in parent.getElementsByTagName("li")){
-                                $(parent).find("li").remove()
-                            }
-                        }else{
-                            open = true
-                            let pathArray = getPath(parent)
-                            let folder = getFolder(pathArray,storage)
-                            print(folder,parent)
-                        }
-                    }
-                </script>
-            </div>
+            </div><!-- Modal New -->
+            <div id="modal-new-item" class="modal-new" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Create file or directory</h5>
+                      <button id="cross" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                              <label for="inputCity">Name</label>
+                              <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="inputState">Type</label>
+                              <select id="inputState" class="form-control">
+                                <option selected>Choose...</option>
+                                <option>Folder</option>
+                                <option>.doc</option>
+                                <option>.csv</option>
+                                <option>.jpg</option>
+                                <option>.png</option>
+                                <option>.txt</option>
+                                <option>.ppt</option>
+                                <option>.odt</option>
+                                <option>.pdf</option>
+                                <option>.zip</option>
+                                <option>.rar</option>
+                                <option>.exe</option>
+                                <option>.svg</option>
+                                <option>.mp3</option>
+                                <option>.mp4</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputCity">Select folder</label>
+                            <input type="text" class="form-control" id="inputCity">
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">Save</button>
+                      <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!-- modal delete or rename -->
+            <div id="context-menu">
+                <div class="item">
+                   Rename
+                </div>
+                <div class="item">
+                   Delete
+                </div>
+              </div>
         </body>
     </html>

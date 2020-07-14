@@ -65,7 +65,7 @@
                     function print(pObject, parent){
                         if(Object.keys(pObject).length > 0){
                             for(let i in pObject){
-                                if(i=="Info")continue
+                                if(i=="Info" || i.includes("."))continue
                                 spanHTML.textContent = i
                                 let liHTMLClone = liHTML.cloneNode(true)
                                 liHTMLClone.dataset.key = i

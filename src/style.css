@@ -1,3 +1,9 @@
+body{
+    overflow-x:hidden;
+}
+a{
+    cursor:pointer;
+}
 .logo{
     background-image:url("https://findicons.com/files/icons/734/phuzion/256/download_box.png");
     background-size:contain;

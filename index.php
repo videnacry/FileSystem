@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
                     <div class="col-12 justify-content-center d-flex p-4"><button class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
-                    <ul id="directory-nav" class="navbar-nav">
+                    <ul id="directory-nav" class="navbar-nav ml-2">
                     </ul>
                 </div>
                 <div class="col-6 m-0 p-0 shadow-sm" role="main">
@@ -48,6 +48,7 @@
                     liHTML.className = "nav-item ml-2"
                     let aHTML = document.createElement("a")
                     aHTML.className = "nav-link"
+                    aHTML.setAttribute("onclick","printChildren()")
                     let caretHTML = document.createElement("i")
                     caretHTML.className = "fas fa-caret-right mx-1"
                     let folderHTML = document.createElement("i")
@@ -64,11 +65,44 @@
                     function print(pObject, parent){
                         if(Object.keys(pObject).length > 0){
                             for(let i in pObject){
+                                if(i=="Info")continue
                                 spanHTML.textContent = i
                                 let liHTMLClone = liHTML.cloneNode(true)
-                                print(pObject[i], liHTMLClone)       
+                                liHTMLClone.dataset.key = i
                                 parent.appendChild(liHTMLClone)                         
                             }
+                        }
+                    }
+                    function getPath(elementHTML){
+                        let pathArray = []
+                        let target = elementHTML
+                        pathArray.push(target.dataset.key)
+                        while(target.parentElement.dataset.key){
+                            pathArray.unshift(target.parentElement.dataset.key)
+                            target = target.parentElement
+                        } 
+                        return pathArray
+                    }
+                    function getFolder(pathArray,pStorage){
+                        console.log(pathArray)
+                        let folder = pStorage
+                        for(let i in pathArray){
+                            folder = folder[pathArray[i]]
+                        }
+                        return folder
+                    }
+                    function printChildren(){
+                        let open = false
+                        let parent = event.currentTarget.parentElement
+                        if(parent.getElementsByTagName("li").length > 0){
+                            for(let i in parent.getElementsByTagName("li")){
+                                $(parent).find("li").remove()
+                            }
+                        }else{
+                            open = true
+                            let pathArray = getPath(parent)
+                            let folder = getFolder(pathArray,storage)
+                            print(folder,parent)
                         }
                     }
                 </script>

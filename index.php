@@ -28,10 +28,6 @@
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
                     <div class="col-12 justify-content-center d-flex p-4"><button class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
                     <ul id="directory-nav" class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link"><i class="fas fa-caret-down">&nbsp;</i><i class="fas fa-folder-open"></i>&nbsp;Folder</a></li>
-                        <li class="ml-2 nav-item"><a class="nav-link"><i class="fas fa-caret-down">&nbsp;</i><i class="fas fa-folder-open"></i>&nbsp;FolderChild</a></li>
-                        <li class="ml-4 nav-item"><a class="nav-link"><i class="fas fa-caret-right">&nbsp;</i><i class="fas fa-folder">&nbsp;</i>FolderGrandchild</a></li>
-                        <li></li>
                     </ul>
                 </div>
                 <div class="col-6 m-0 p-0 shadow-sm" role="main">
@@ -49,7 +45,7 @@
                     let storage
                     let directoryNav = document.getElementById("directory-nav")
                     let liHTML = document.createElement("li")
-                    liHTML.className = "nav-item"
+                    liHTML.className = "nav-item ml-2"
                     let aHTML = document.createElement("a")
                     aHTML.className = "nav-link"
                     let caretHTML = document.createElement("i")
@@ -69,8 +65,9 @@
                         if(Object.keys(pObject).length > 0){
                             for(let i in pObject){
                                 spanHTML.textContent = i
-                                directoryNav.appendChild(liHTML.cloneNode(true))
-                                //print(pObject[i])                                
+                                let liHTMLClone = liHTML.cloneNode(true)
+                                print(pObject[i], liHTMLClone)       
+                                parent.appendChild(liHTMLClone)                         
                             }
                         }
                     }

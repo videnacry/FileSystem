@@ -7,6 +7,7 @@ let directoryNav = document.getElementById("directory-nav")
 let liHTML = document.createElement("li")
 liHTML.className = "nav-item ml-2"
 let aHTML = document.createElement("a")
+aHTML.style.width = "fit-content"
 aHTML.className = "nav-link"
 aHTML.setAttribute("onclick", "printChildren()")
 aHTML.setAttribute("oncontextmenu", "showMiniModal()")
@@ -45,7 +46,6 @@ function getPath(elementHTML) {
     return pathArray
 }
 function getFolder(pathArray, pStorage) {
-    console.log(pathArray)
     let folder = pStorage
     for (let i in pathArray) {
         folder = folder[pathArray[i]]
@@ -68,19 +68,40 @@ function printChildren() {
 }
 
 //-----------------------------------MiniModal---------------------------------------
-
+let itemSelected
+let a 
 var contextElement = document.getElementById("context-menu");
-
 function showMiniModal() {
     event.preventDefault();
-    contextElement.style.top = event.offsetY + "px";
-    contextElement.style.left = event.offsetX + "px";
+    itemSelected = event.currentTarget
+    contextElement.style.top = event.currentTarget.offsetTop + event.currentTarget.offsetHeight + "px"
+    contextElement.style.left = event.currentTarget.offsetLeft + event.currentTarget.offsetWidth + "px"
     contextElement.classList.add("active");
+    let renameItem = document.getElementById("rename-item")
+    let deleteItem = document.getElementById("delete-item")
+    renameItem.addEventListener("click",function(){
+        let parent = itemSelected.parentElement.parentElement
+        let target = event.currentTarget
+        let targetName = target.dataset.key
+        let pathArray = getPath(parent)
+        folder = getFolder(pathArray, storage)
+        renameStorageItem(folder,targetName,"beorn")
+    })
 }
 
-$(contextElement).click(function () {
-    document.getElementById("context-menu").classList.remove("active");
+$("body").click(function () {
+    contextElement.classList.remove("active");
 });
+
+//------------------------------Rename Item in Storage--------------------------------
+
+function renameStorageItem(parent, name, newName){
+    a = parent
+    if(parent.hasOwnProperty(name)){
+        parent[newName] = Object.assign([],parent[name])
+        delete parent[name]
+    }
+}
 
 //----------------------------Modal New Item in directory-----------------------------
 
@@ -88,8 +109,10 @@ let buttonNewItem = document.getElementById("button-new-item")
 let modalNewItem = document.getElementById("modal-new-item")
 buttonNewItem.addEventListener("click",function(){
     modalNewItem.style.display = "block"
-    modalNewItem.getElementsByClassName("close")[0].addEventListener("click",closeModal)
-    modalNewItem.getElementsByClassName("btn-secondary")[0].addEventListener("click",closeModal)
+    modalCloseItems = ["modal-close-bg","close","btn-secondary"]
+    modalCloseItems.map(function(item){
+        modalNewItem.getElementsByClassName(item)[0].addEventListener("click",closeModal)
+    })
     function closeModal(){
         modalNewItem.style.display = "none"
     }

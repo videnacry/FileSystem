@@ -36,3 +36,9 @@ $.ajax({
     }
 
 })
+
+// add event listeners
+
+$(".nav-item").contextmenu(function() {
+    alert( "Hello World!" );
+  });

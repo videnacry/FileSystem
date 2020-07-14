@@ -3,3 +3,32 @@
     background-size:contain;
     background-repeat:no-repeat;
 }
+
+
+.modal-new{
+    position: fixed;
+    z-index: 4050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    right: 145px;
+    top: 60px;
+    display: none;
+}
+
+.modal-modify{
+    max-width: 100px;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    z-index: 4050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
+.btn-modify{
+    height: 35px;
+}

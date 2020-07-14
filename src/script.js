@@ -94,3 +94,22 @@ buttonNewItem.addEventListener("click",function(){
         modalNewItem.style.display = "none"
     }
 })
+
+//-------------------------------create new file/folder-----------------------------------//
+$("#create-new-item").click(function(){
+    const nameItem = $("#inputName").val();
+    const chooseItem = $("#input-type").val();
+    const pathItem = $("#input-path").val();
+    $.ajax({
+        method: "post",
+        url: "validateNewItem.php",
+        data: {nameItem:nameItem,chooseItem:chooseItem,pathItem:pathItem},
+        success: function(data, statusText, jqXHR){
+            console.log(data);
+        },
+        error: function(jqXHR, errorStatusText, errorMessage){
+            console.log(errorMessage);
+        }
+
+    })
+})

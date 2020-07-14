@@ -53,37 +53,37 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                               <label for="inputCity">Name</label>
-                              <input type="text" class="form-control" id="inputCity">
+                              <input type="text" class="form-control" id="inputName">
                             </div>
                             <div class="form-group col-md-4">
-                              <label for="inputState">Type</label>
-                              <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>Folder</option>
-                                <option>.doc</option>
-                                <option>.csv</option>
-                                <option>.jpg</option>
-                                <option>.png</option>
-                                <option>.txt</option>
-                                <option>.ppt</option>
-                                <option>.odt</option>
-                                <option>.pdf</option>
-                                <option>.zip</option>
-                                <option>.rar</option>
-                                <option>.exe</option>
-                                <option>.svg</option>
-                                <option>.mp3</option>
-                                <option>.mp4</option>
+                              <label for="input-type">Type</label>
+                              <select id="input-type" class="form-control">
+                                <option value="choose" selected>Choose...</option>
+                                <option value="folder">Folder</option>
+                                <option value=".doc">.doc</option>
+                                <option value=".csv">.csv</option>
+                                <option value=".jpg">.jpg</option>
+                                <option value=".png">.png</option>
+                                <option value=".txt">.txt</option>
+                                <option value=".ppt">.ppt</option>
+                                <option value=".odt">.odt</option>
+                                <option value=".pdf">.pdf</option>
+                                <option value=".zip">.zip</option>
+                                <option value=".rar">.rar</option>
+                                <option value=".exe">.exe</option>
+                                <option value=".svg">.svg</option>
+                                <option value=".mp3">.mp3</option>
+                                <option value=".mp4">.mp4</option>
                               </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputCity">Select folder</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label for="input-path">Select folder</label>
+                            <input type="text" class="form-control" id="input-path">
                           </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Save</button>
+                      <button id="create-new-item" type="button" class="btn btn-primary">Save</button>
                       <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                   </div>

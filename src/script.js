@@ -19,3 +19,20 @@ root["myFiles"]["Photography"] = {};
 root["myFiles"]["Video"] = {};
 root["Photos"] = {};
 root["Music"] = {};
+
+const rootStorage = JSON.stringify(root);
+console.log(rootStorage);
+
+$.ajax({
+    method: "post",
+    data: {user: "beron@carlota.com", 
+        storage: rootStorage},
+    url: "saveStorage.php",
+    success: function(response, textStatus, jqXHR){
+        console.log(response);
+    },
+    error: function(jqXHR, errorTextStatus, errorMessage){
+        console.log(errorMessage);
+    }
+
+})

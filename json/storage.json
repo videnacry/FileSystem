@@ -1,22 +1,28 @@
 {
     "Beron":{   
         "My Files":{
-            "size":"",
-            "author":"",
-            "lastModification":"",
-            "creation":""
+            "info":{
+                "size":"",
+                "author":"",
+                "lastModification":"",
+                "creation":""
+            }
         },
         "Photos":{
-            "size":"",
-            "author":"",
-            "lastModification":"",
-            "creation":""
+            "info":{
+                "size":"",
+                "author":"",
+                "lastModification":"",
+                "creation":""
+            }
         },
         "Music":{
-            "size":"",
-            "author":"",
-            "lastModification":"",
-            "creation":""
+            "info":{
+                "size":"",
+                "author":"",
+                "lastModification":"",
+                "creation":""
+            }
         }
     }
 }

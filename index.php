@@ -1,8 +1,3 @@
-
-<?php
-
-?>
-
 <!DOCTYPE html>
     <html>
         <head>
@@ -32,7 +27,7 @@
             <div class="row">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
                     <div class="col-12 justify-content-center d-flex p-4"><button class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
-                    <ul class="navbar-nav">
+                    <ul id="directory-nav" class="navbar-nav">
                         <li class="nav-item"><a class="nav-link"><i class="fas fa-caret-down">&nbsp;</i><i class="fas fa-folder-open"></i>&nbsp;Folder</a></li>
                         <li class="ml-2 nav-item"><a class="nav-link"><i class="fas fa-caret-down">&nbsp;</i><i class="fas fa-folder-open"></i>&nbsp;FolderChild</a></li>
                         <li class="ml-4 nav-item"><a class="nav-link"><i class="fas fa-caret-right">&nbsp;</i><i class="fas fa-folder">&nbsp;</i>FolderGrandchild</a></li>
@@ -48,7 +43,38 @@
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                     </ul>
                 </div>
-                
+                <script>
+                    let userEmail = "beron@carlota.com"
+                    let path = "json/" + userEmail + ".json"
+                    let storage
+                    let directoryNav = document.getElementById("directory-nav")
+                    let liHTML = document.createElement("li")
+                    liHTML.className = "nav-item"
+                    let aHTML = document.createElement("a")
+                    aHTML.className = "nav-link"
+                    let caretHTML = document.createElement("i")
+                    caretHTML.className = "fas fa-caret-right mx-1"
+                    let folderHTML = document.createElement("i")
+                    folderHTML.className = "fas fa-folder mx-1"
+                    let spanHTML = document.createElement("span")
+                    liHTML.appendChild(aHTML)
+                    aHTML.appendChild(caretHTML)
+                    aHTML.appendChild(folderHTML)
+                    aHTML.appendChild(spanHTML)
+                    $.getJSON(path,function(data,statusText,jqXHR){
+                        storage = data
+                        print(storage, directoryNav)
+                    })
+                    function print(pObject, parent){
+                        if(Object.keys(pObject).length > 0){
+                            for(let i in pObject){
+                                spanHTML.textContent = i
+                                directoryNav.appendChild(liHTML.cloneNode(true))
+                                //print(pObject[i])                                
+                            }
+                        }
+                    }
+                </script>
             </div>
         </body>
     </html>

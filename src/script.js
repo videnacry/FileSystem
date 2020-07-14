@@ -1,0 +1,21 @@
+let info = {};
+info["Size"] = {};
+info["Type"] = {};
+info["Creation"] = {};
+info["Modified"] = {};
+
+let root = {};
+root["myFiles"] = {};
+root["myFiles"]["Info"] = info;
+root["myFiles"]["Music"] = {};
+root["myFiles"]["Office"] = {};
+root["myFiles"]["Office"]["Accounting"] = {};
+root["myFiles"]["Office"]["Accounting"]["Document.txt"] = {};
+root["myFiles"]["Office"]["Accounting"]["Document.txt"]["Info"] = info;
+root["myFiles"]["Office"]["Accounting"]["Info"] ={};
+root["myFiles"]["Office"]["Accounting"]["Info"]["Size"] ={};
+root["myFiles"]["PDF Docs"] = {};
+root["myFiles"]["Photography"] = {};
+root["myFiles"]["Video"] = {};
+root["Photos"] = {};
+root["Music"] = {};

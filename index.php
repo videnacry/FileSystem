@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
-                    <div id="button-new-item" class="col-12 justify-content-center d-flex p-4"><button class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
+                    <div class="col-12 justify-content-center d-flex p-4"><button id="button-new-item" class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
                     <ul id="directory-nav" class="navbar-nav ml-2">
                     </ul>
                 </div>
@@ -41,6 +41,7 @@
                 </div>
             </div><!-- Modal New -->
             <div id="modal-new-item" class="modal-new" tabindex="-1" role="dialog">
+              <div class="modal-close-bg"></div>
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -90,10 +91,10 @@
               </div>
             <!-- modal delete or rename -->
             <div id="context-menu">
-                <div class="item">
+                <div id="rename-item" class="item">
                    Rename
                 </div>
-                <div class="item">
+                <div id="delete-item" class="item">
                    Delete
                 </div>
               </div>

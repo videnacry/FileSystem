@@ -52,14 +52,13 @@
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                              <label for="inputCity">Name</label>
+                              <label for="inputName">Name</label>
                               <input type="text" class="form-control" id="inputName">
                             </div>
                             <div class="form-group col-md-4">
                               <label for="input-type">Type</label>
                               <select id="input-type" class="form-control">
-                                <option value="choose" selected>Choose...</option>
-                                <option value="folder">Folder</option>
+                                <option selected value="folder">Folder</option>
                                 <option value=".doc">.doc</option>
                                 <option value=".csv">.csv</option>
                                 <option value=".jpg">.jpg</option>

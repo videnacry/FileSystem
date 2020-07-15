@@ -4,14 +4,11 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
             <link type="image/icon" rel="icon" href="https://findicons.com/files/icons/734/phuzion/256/download_box.png"/>
-            <!--<link rel="stylesheet" type="text/css" href="node_modules\bootstrap\dist\css\bootstrap.css"/>-->
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
-            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="node_modules\bootstrap\dist\css\bootstrap.css"/>
             <link rel="stylesheet" type="text/css" href="src/style.css"/>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" 
                   integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous"/>
-            <!--<script src="node_modules/jquery/dist/jquery.js"></script>-->
-            <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+            <script src="node_modules/jquery/dist/jquery.js"></script>
             <script src="src/script.js" defer></script>
             <title>LOCAL_FILLESYSTEM</title>
         </head>
@@ -29,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
-                    <div id="button-new-item" class="col-12 justify-content-center d-flex p-4"><button class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
+                    <div class="col-12 justify-content-center d-flex p-4"><button id="button-new-item" class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
                     <ul id="directory-nav" class="navbar-nav ml-2">
                     </ul>
                 </div>

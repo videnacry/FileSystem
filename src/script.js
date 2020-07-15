@@ -69,19 +69,21 @@ function printChildren() {
 
 //-----------------------------------MiniModal---------------------------------------
 let itemSelected
-let a 
 var contextElement = document.getElementById("context-menu");
 function showMiniModal() {
     event.preventDefault();
     itemSelected = event.currentTarget
-    contextElement.style.top = event.currentTarget.offsetTop + event.currentTarget.offsetHeight + "px"
-    contextElement.style.left = event.currentTarget.offsetLeft + event.currentTarget.offsetWidth + "px"
+    contextElement.style.top = itemSelected.offsetTop + itemSelected.offsetHeight + "px"
+    contextElement.style.left = itemSelected.offsetLeft + itemSelected.offsetWidth + "px"
     contextElement.classList.add("active");
     let renameItem = document.getElementById("rename-item")
     let deleteItem = document.getElementById("delete-item")
+    deleteItem.addEventListener("click",function(){
+        
+    })
     renameItem.addEventListener("click",function(){
-        let parent = itemSelected.parentElement.parentElement
-        let target = event.currentTarget
+        let target = itemSelected.parentElement
+        let parent = target.parentElement
         let targetName = target.dataset.key
         let pathArray = getPath(parent)
         folder = getFolder(pathArray, storage)
@@ -96,7 +98,6 @@ $("body").click(function () {
 //------------------------------Rename Item in Storage--------------------------------
 
 function renameStorageItem(parent, name, newName){
-    a = parent
     if(parent.hasOwnProperty(name)){
         parent[newName] = Object.assign([],parent[name])
         delete parent[name]

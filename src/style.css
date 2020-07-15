@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body{
     overflow-x:hidden;
 }
@@ -59,3 +65,21 @@ a{
     margin:2px 0px;
     border-color:#555;
   }
+
+.name-file{
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.file-description{
+  width: 95%;
+}
+
+.container-screen{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 500px;
+}

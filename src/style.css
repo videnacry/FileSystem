@@ -6,6 +6,8 @@
 
 body{
     overflow-x:hidden;
+    overflow-y:hidden;
+
 }
 a{
     cursor:pointer;
@@ -81,5 +83,5 @@ a{
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  height: 500px;
+  height: 650px;
 }

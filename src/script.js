@@ -1,5 +1,6 @@
 //---------------------------directory Navigator------------------------------------
 
+
 let userEmail = "beron@carlota.com"
 let url = "json/" + userEmail + ".json"
 let storage
@@ -244,3 +245,35 @@ $("#create-new-item").click(function(){
         })
     }
 })
+
+//------------------------------Search Bar------------------------------------------//
+const search = document.getElementById('search-bar');
+const matchList = document.getElementsByClassName('searcher');
+const btnSearch = document.getElementById('btn-search');
+const folderContent = document.getElementById('folder-content')
+
+btnSearch.addEventListener("click", function(){
+    const searchValue = search.value;
+    folderContent.textContent = ""
+    if(searchValue === 'Info'){
+
+    }else{
+        for(const searchItem in storage) {
+            if(searchItem.includes(searchValue) && searchItem != 'Info'){
+                $(folderContent).append($("<a class=list-group-item list-group-item-action><i class=fas fa-folder-open></i>&nbsp;" + searchItem + "</a>"))
+            }if(Object.keys(storage[searchItem]).length>0 && searchItem != 'Info'){
+                findFolders(storage[searchItem],searchValue);
+            }
+        }
+    }
+})
+
+function findFolders(pStorage, searchValue){
+    for (const searchItem in pStorage) {
+        if(searchItem.includes(searchValue) && searchItem != 'Info'){
+            $(folderContent).append($("<a class=list-group-item list-group-item-action><i class=fas fa-folder-open></i>&nbsp;" + searchItem + "</a>"))
+        }if(Object.keys(pStorage[searchItem]).length>0 && searchItem != 'Info'){
+            findFolders(pStorage[searchItem],searchValue);
+        }
+    }
+}

@@ -19,10 +19,10 @@
                     <div class="logo col-1" role="img"></div>
                     <div class="navbar-brand col-4">GreenBox</div>
                 </div>
-                <form class="form-inline col-8 d-flex flex-nowrap">
-                    <input class="form-control bg-light" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success mx-2" type="submit">Search</button>
-                </form>
+                <div class="form-inline col-8 d-flex flex-nowrap">
+                    <input class="form-control bg-light" type="search" placeholder="Search" aria-label="Search" id="search-bar">
+                    <button id="btn-search" class="btn btn-outline-success mx-2" type="submit">Search</button>
+                </div>
                 <div class="searcher"></div>
             </div>
             <div class="row bg-light container-screen">
@@ -35,16 +35,18 @@
                 </div>
                 <div class="col-6 m-0 p-0 shadow-sm" role="main">
                     <ul class="list-group list-group-flush">
-                    <div class="bg-light d-flex justify-content-between">
-                        <li class="col-8 list-group-item border-0 bg-light pt-3">Name</li>
-                        <li class="list-group-item border-0 bg-light pt-3">Label</li>
-                        <li class="list-group-item border-0 bg-light pt-3">Size</li>
-                        <li class="list-group-item bg-light border-0 pt-3">Modified</li>
-                    </div>
+                      <div class="bg-light d-flex justify-content-between">
+                          <li class="col-8 list-group-item border-0 bg-light pt-3">Name</li>
+                          <li class="list-group-item border-0 bg-light pt-3">Label</li>
+                          <li class="list-group-item border-0 bg-light pt-3">Size</li>
+                          <li class="list-group-item bg-light border-0 pt-3">Modified</li>
+                      </div>
+                      <div id="folder-content" class="list-group list-group-flush">
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
+                      </div>
                     </ul>
                 </div>
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
@@ -54,19 +56,19 @@
                   </li>
                   <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
                     Label
-                    <span class="badge badge-primary badge-pill">APROVED</span>
+                    <span class="badge badge-success badge-pill">APROVED</span>
                   </li>
                   <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
                     Type
-                    <span class="badge badge-primary badge-pill">MS Excel Document</span>
+                    <span class="badge badge-success badge-pill">MS Excel Document</span>
                   </li>
                   <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
                     Size
-                    <span class="badge badge-primary badge-pill">38 KB</span>
+                    <span class="badge badge-success badge-pill">38 KB</span>
                   </li>
                   <li class="pb-4 list-group-item d-flex justify-content-between align-items-center">
                     Modified
-                    <span class="badge badge-primary badge-pill">Feb 23, 2016</span>
+                    <span class="badge badge-success badge-pill">Feb 23, 2016</span>
                   </li>
                 </ul>
                 </div>

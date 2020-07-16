@@ -54,19 +54,19 @@
                   </li>
                   <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
                     Label
-                    <span class="badge badge-primary badge-pill">APROVED</span>
+                    <span class="badge badge-success badge-pill">APROVED</span>
                   </li>
                   <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
                     Type
-                    <span class="badge badge-primary badge-pill">MS Excel Document</span>
+                    <span class="badge badge-success badge-pill">MS Excel Document</span>
                   </li>
                   <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
                     Size
-                    <span class="badge badge-primary badge-pill">38 KB</span>
+                    <span class="badge badge-success badge-pill">38 KB</span>
                   </li>
                   <li class="pb-4 list-group-item d-flex justify-content-between align-items-center">
                     Modified
-                    <span class="badge badge-primary badge-pill">Feb 23, 2016</span>
+                    <span class="badge badge-success badge-pill">Feb 23, 2016</span>
                   </li>
                 </ul>
                 </div>

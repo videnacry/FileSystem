@@ -20,10 +20,13 @@ liHTML.appendChild(aHTML)
 aHTML.appendChild(caretHTML)
 aHTML.appendChild(folderHTML)
 aHTML.appendChild(spanHTML)
-$.getJSON(url, function (data, statusText, jqXHR) {
-    storage = data
-    print(storage, directoryNav)
-})
+loadDirectory()
+function loadDirectory(){
+    $.getJSON(url, function (data, statusText, jqXHR) {
+        storage = data
+        print(storage, directoryNav)
+    })
+}
 function print(pObject, parent) {
     if (Object.keys(pObject).length > 0) {
         for (let i in pObject) {
@@ -66,6 +69,13 @@ function printChildren() {
         print(folder, parent)
     }
 }
+
+//--------------------------------Reload Directory----------------------------------
+
+document.getElementById("directory-reload").addEventListener("click",function(){
+    directoryNav.textContent = ""
+    loadDirectory()
+})
 
 //-----------------------------------MiniModal---------------------------------------
 let itemSelected

@@ -88,6 +88,7 @@ a{
 .absolute-right{
   position: absolute;
   right: 10px;
+  top: 100px;
 }
 
 .navbar .absolute-right{

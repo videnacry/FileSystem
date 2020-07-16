@@ -69,7 +69,7 @@ for( $i = 0 ;$pathCount>$i ; $i++){
                     $folder[nameItem . chooseItem]->Info = new stdClass();
                     $folder[nameItem . chooseItem]->Info->creation = date('r');
                     $folder[nameItem . chooseItem]->Info->size = fileUpload['size'];
-                    move_uploaded_file(fileUpload['tmp_name'],'src/' . implode('_',$pathArray) . '_' . nameItem . chooseItem);
+                    move_uploaded_file(fileUpload['tmp_name'],'src/img/' . implode('_',$pathArray) . '_' . nameItem . chooseItem);
                 }
             }
             array_unshift($parentArray,$folder);

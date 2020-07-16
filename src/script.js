@@ -46,7 +46,8 @@ const zipExtention = ["zip","rar"]
 const exeExtention = ["exe"]
 const audioExtention = ["mp3"]
 const videoExtention = ["mp4"]
-function printItem(pObject, parent){
+const playMedia = document.getElementById("play-media")
+function printItem(pObject, parent, pPath = ""){
     parent.textContent = ""
     if (Object.keys(pObject).length > 0) {
         for (let i in pObject) {
@@ -56,7 +57,10 @@ function printItem(pObject, parent){
             }else{
                 if(imgExtention.includes(i.split(".")[1])){
                     $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-image'></i></i>&nbsp;" + i + "</a>")
-                    .click()
+                    .click(function(){
+                        closeModals.style.display = "block"
+                        $(playMedia).fadeIn(500).css("background-image","url('src/img/" + pPath + "_" + i + "')")
+                    })
                     )
                 }else if(docExtention.includes(i.split(".")[1])){
                     $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-alt'></i>&nbsp;" + i + "</a>"))                    
@@ -64,11 +68,18 @@ function printItem(pObject, parent){
                     $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-archive'></i>&nbsp;" + i + "</a>"))                    
                 }else if(audioExtention.includes(i.split(".")[1])){
                     $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-audio'></i>&nbsp;" + i + "</a>")
-                    .click()
+                    .click(function(){
+                        closeModals.style.display = "block"
+                        $(playMedia).fadeIn(500).append($('<audio autoplay controls  src="src/img/' + pPath + '_' + i + '" </audio>'))
+                        .css("background-image","url('src/img/Profile.jpg')")
+                    })
                     )                    
                 }else if(videoExtention.includes(i.split(".")[1])){
                     $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-video'></i>&nbsp;" + i + "</a>")
-                    .click()
+                    .click(function(){
+                        closeModals.style.display = "block"
+                        $(playMedia).fadeIn(500).append($('<video autoplay controls  src="src/img/' + pPath + '_' + i + '" </video>'))
+                    })
                     )                    
                 }else if(exeExtention.includes(i.split(".")[1])){
                     $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-code'></i>&nbsp;" + i + "</a>"))                    
@@ -108,7 +119,7 @@ function printChildren(allowItem=false) {
         let pathArray = getPath(parent)
         let folder = getFolder(pathArray, storage)
         if(allowItem){
-            printItem(folder, folderContent)
+            printItem(folder, folderContent, pathArray.join("_"))
         }
         printFolder(folder, parent)
     }
@@ -164,12 +175,6 @@ function showMiniModal() {
 
 //------------------------------Rename/Remove Item in Storage--------------------------------
 function renameRemoveRequest(url, selectedItem, path, newName, userEmail, erase){
-    console.log(url)
-    console.log(path)
-    console.log(selectedItem)
-    console.log(newName)
-    console.log(userEmail)
-    console.log(erase)
     $.ajax(
         {url:"changeFile.php",
         method:"post",
@@ -235,6 +240,8 @@ buttonNewItem.addEventListener("click",function(){
 
 $("#close-modals").click(function(){
         contextElement.classList.remove("active");
+        playMedia.textContent = ""
+        playMedia.style.display = "none"
         newName.style.display = "none"
         newName.value = ""
         event.currentTarget.style.display = "none"

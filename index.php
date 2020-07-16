@@ -14,6 +14,7 @@
         </head>
         <body>
           <div id="close-modals" class="modal-close-bg"></div>
+          <div id="play-media" class="play"></div>
             <div class="p-4 shadow-sm sticky-top row navbar-light" role="heading">
                 <div class="d-flex flex-nowrap col-4 col-sm-3">
                     <div class="logo col-1" role="img"></div>

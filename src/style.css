@@ -12,6 +12,11 @@ body{
 a{
     cursor:pointer;
 }
+audio{
+  width:100%;
+  position: absolute;
+  top:80%;
+}
 .logo{
     background-image:url("https://findicons.com/files/icons/734/phuzion/256/download_box.png");
     background-size:contain;
@@ -99,4 +104,18 @@ a{
 
 .navbar .absolute-right:hover{
   color:rgba(0, 0, 0, 0.8)
+}
+
+.play{
+  width:80vw;
+  height:80vh;
+  position:absolute;
+  z-index:2;
+  top:10vh;
+  left:10vw;
+  display:none;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(8, 8, 8);
 }

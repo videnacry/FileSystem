@@ -72,7 +72,7 @@ for( $i = 0 ;$pathCount>$i ; $i++){
                     $folder[nameItem . chooseItem]->Info->Creation = date('r');
                     $folder[nameItem . chooseItem]->Info->Label = "Aproved";
                     $folder[nameItem . chooseItem]->Info->Type = chooseItem;
-                    $folder[nameItem . chooseItem]->Info->Size = fileUpload['size'];
+                    $folder[nameItem . chooseItem]->Info->Size = fileUpload['size'] . "kb";
                     move_uploaded_file(fileUpload['tmp_name'],'src/img/' . implode('_',$pathArray) . '_' . nameItem . chooseItem);
                 }
             }

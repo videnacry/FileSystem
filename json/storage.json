@@ -1,40 +1,30 @@
 {
-    "Beron":{
-        "My Files":{
-            "info":{
-                "size":"",
-                "author":"",
-                "lastModification":"",
-                "creation":""
-            }
-        },
-        "Photos":{
-            "info":{
-                "size":"",
-                "author":"",
-                "lastModification":"",
-                "creation":""
-            }
-        },
-        "Music":{
-            "info":{
-                "size":"",
-                "author":"",
-                "lastModification":"",
-                "creation":""
-            }
-        },
-        "Stared":{
-
-        },
-        "Shared by me":{
-
-        },
-        "Shared links":{
-
-        },
-        "Trash":{
-
+    "My Files": {
+        "info": {
+            "size": "",
+            "author": "",
+            "lastModification": "",
+            "creation": ""
         }
-    }
+    },
+    "Photos": {
+        "info": {
+            "size": "",
+            "author": "",
+            "lastModification": "",
+            "creation": ""
+        }
+    },
+    "Music": {
+        "info": {
+            "size": "",
+            "author": "",
+            "lastModification": "",
+            "creation": ""
+        }
+    },
+    "Stared": {},
+    "Shared by me": {},
+    "Shared links": {},
+    "Trash": {}
 }

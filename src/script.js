@@ -1,7 +1,7 @@
 //---------------------------directory Navigator------------------------------------
 
 let userEmail = "beron@carlota.com"
-let path = "json/" + userEmail + ".json"
+let url = "json/" + userEmail + ".json"
 let storage
 let directoryNav = document.getElementById("directory-nav")
 let liHTML = document.createElement("li")
@@ -20,7 +20,7 @@ liHTML.appendChild(aHTML)
 aHTML.appendChild(caretHTML)
 aHTML.appendChild(folderHTML)
 aHTML.appendChild(spanHTML)
-$.getJSON(path, function (data, statusText, jqXHR) {
+$.getJSON(url, function (data, statusText, jqXHR) {
     storage = data
     print(storage, directoryNav)
 })
@@ -69,53 +69,128 @@ function printChildren() {
 
 //-----------------------------------MiniModal---------------------------------------
 let itemSelected
+let newName = document.getElementById("new-name")
+newName.style.display = "none"
 var contextElement = document.getElementById("context-menu");
+document.getElementById("rename-item").addEventListener("click",function(){
+    contextElement.classList.remove("active")
+    $("#new-name").css({
+        display:"block",
+        position:"absolute",
+        zIndex:1,
+        top:itemSelected.offsetTop+"px",
+        left:itemSelected.offsetLeft+"px",
+        width:itemSelected.offsetWidth+"px"
+    }).keyup(function(){
+        if(event.key == "Enter"){
+            event.currentTarget.style.display = "none"
+            closeModals.style.display = "none"
+            if(newName.value != ""){
+                renameRemoveEvent(false)
+            }
+            else{
+                console.log("bad")
+            }
+        }
+    })
+})
+document.getElementById("delete-item").addEventListener("click",function(){
+    contextElement.classList.remove("active")
+    renameRemoveEvent(true)
+})
 function showMiniModal() {
     event.preventDefault();
+    closeModals.style.display = "block"
     itemSelected = event.currentTarget
     contextElement.style.top = itemSelected.offsetTop + itemSelected.offsetHeight + "px"
     contextElement.style.left = itemSelected.offsetLeft + itemSelected.offsetWidth + "px"
     contextElement.classList.add("active");
-    let renameItem = document.getElementById("rename-item")
-    let deleteItem = document.getElementById("delete-item")
-    deleteItem.addEventListener("click",function(){
-        
-    })
-    renameItem.addEventListener("click",function(){
-        let target = itemSelected.parentElement
-        let parent = target.parentElement
-        let targetName = target.dataset.key
-        let pathArray = getPath(parent)
-        folder = getFolder(pathArray, storage)
-        renameStorageItem(folder,targetName,"beorn")
+}
+
+//------------------------------Rename/Remove Item in Storage--------------------------------
+function renameRemoveRequest(url, selectedItem, path, newName, userEmail, erase){
+    console.log(url)
+    console.log(path)
+    console.log(selectedItem)
+    console.log(newName)
+    console.log(userEmail)
+    console.log(erase)
+    $.ajax(
+        {url:"changeFile.php",
+        method:"post",
+        data:{
+            selectedItem:selectedItem,
+            path:path,
+            newName:newName,
+            userEmail:userEmail,
+            delete:erase
+        },success:function(data,statusText,jqXHR){
+            if(JSON.parse(data).reachPath == "undefined"){
+                alert(JSON.parse(data).reachPath)
+            }
+        }
     })
 }
 
-$("body").click(function () {
-    contextElement.classList.remove("active");
-});
+function renameRemoveEvent(erase){
+    let target = itemSelected.parentElement
+    let parent = target.parentElement
+    let targetName = target.dataset.key
+    let pathArray = getPath(parent) 
+    renameRemoveRequest(url,targetName,pathArray.join("/"),newName.value,userEmail,erase)
+    folder = getFolder(pathArray, storage)
+    renameRemoveItem(folder,targetName,newName.value,erase)
+}
 
-//------------------------------Rename Item in Storage--------------------------------
-
-function renameStorageItem(parent, name, newName){
+function renameRemoveItem(parent, name, newName, erase){
     if(parent.hasOwnProperty(name)){
-        parent[newName] = Object.assign([],parent[name])
-        delete parent[name]
+        if(erase){
+            delete parent[name]    
+        }else{
+            if(parent.hasOwnProperty(newName)){
+                alert("file already exists")
+            }else{
+                parent[newName] = Object.assign({},parent[name])
+                delete parent[name]
+            }
+        }
     }
+    console.log(storage)
 }
 
-//----------------------------Modal New Item in directory-----------------------------
+//---------------------------------Modal New Item in directory---------------------------------
 
+let closeModals = document.getElementById("close-modals") 
+closeModals.style.display = "none"
 let buttonNewItem = document.getElementById("button-new-item")
 let modalNewItem = document.getElementById("modal-new-item")
 buttonNewItem.addEventListener("click",function(){
     modalNewItem.style.display = "block"
-    modalCloseItems = ["modal-close-bg","close","btn-secondary"]
+    modalCloseItems = ["close","btn-secondary","modal-close-bg"]
+    modalNewItem.getElementsByClassName("modal-close-bg")[0].style.zIndex = 0
     modalCloseItems.map(function(item){
         modalNewItem.getElementsByClassName(item)[0].addEventListener("click",closeModal)
     })
     function closeModal(){
         modalNewItem.style.display = "none"
+    }
+})
+
+//-------------------------------------------Close modals---------------------------------------
+
+$("#close-modals").click(function(){
+        contextElement.classList.remove("active");
+        newName.style.display = "none"
+        newName.value = ""
+        event.currentTarget.style.display = "none"
+    }
+)
+$("body").keyup(function(){
+    if(event.key == "Enter" || event.key == "Escape"){
+        newName.style.display = "none"
+        newName.value = ""
+        closeModals.style.display = "none"
+        contextElement.classList.remove("active")
     }
 })
 

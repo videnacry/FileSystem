@@ -13,7 +13,7 @@
             <title>LOCAL_FILLESYSTEM</title>
         </head>
         <body>
-        <header>
+          <div id="close-modals" class="modal-close-bg"></div>
             <div class="p-4 shadow-sm sticky-top row navbar-light" role="heading">
                 <div class="d-flex flex-nowrap col-4 col-sm-3">
                     <div class="logo col-1" role="img"></div>
@@ -25,11 +25,12 @@
                 </form>
                 <div class="searcher"></div>
             </div>
-          </header>
             <div class="row bg-light container-screen">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
-                    <div class="col-12 justify-content-center d-flex p-4"><button id="button-new-item" class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
+                    <div class="col-12 justify-content-center d-flex p-4"><button id="button-new-item" class="btn btn-success btn-block col-11 col-sm-7">New</button></div>
+                    <i id = "directory-reload" class="fas fa-redo-alt btn absolute-right"></i>
                     <ul id="directory-nav" class="navbar-nav ml-2">
+                      <input id='new-name' type='text' value=''/>
                     </ul>
                 </div>
                 <div class="col-6 m-0 p-0 shadow-sm" role="main">
@@ -132,6 +133,6 @@
                 <div id="delete-item" class="item">
                    Delete
                 </div>
-              </div>
+            </div>
         </body>
     </html>

@@ -209,16 +209,38 @@ $("#create-new-item").click(function(){
     const nameItem = $("#inputName").val();
     const chooseItem = $("#input-type").val();
     const pathItem = $("#input-path").val();
-    $.ajax({
-        method: "post",
-        url: "validateNewItem.php",
-        data: {nameItem:nameItem,chooseItem:chooseItem,pathItem:pathItem},
-        success: function(data, statusText, jqXHR){
-            console.log(data);
-        },
-        error: function(jqXHR, errorStatusText, errorMessage){
-            console.log(errorMessage);
-        }
-
-    })
+    if(chooseItem != "folder"){
+        const form = new FormData(document.getElementById("upload-file"))
+        form.append("nameItem", nameItem)
+        form.append("pathItem", pathItem)
+        form.append("chooseItem", chooseItem)
+        form.append("userEmail", userEmail)
+        $.ajax({
+            method: "post",
+            url: "validateNewItem.php",
+            data: form,
+            processData : false,
+            contentType : false,
+            success: function(data, statusText, jqXHR){
+                console.log(data);
+            },
+            error: function(jqXHR, errorStatusText, errorMessage){
+                console.log(errorMessage);
+            }
+    
+        })
+    }else{
+        $.ajax({
+            method: "post",
+            url: "validateNewItem.php",
+            data: {nameItem:nameItem,chooseItem:chooseItem,pathItem:pathItem,userEmail:userEmail},
+            success: function(data, statusText, jqXHR){
+                console.log(data);
+            },
+            error: function(jqXHR, errorStatusText, errorMessage){
+                console.log(errorMessage);
+            }
+    
+        })
+    }
 })

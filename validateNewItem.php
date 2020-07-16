@@ -1,6 +1,16 @@
 <?php
-$chooseItem = $_POST["chooseItem"];
-
+if(isset($_FILES['fileUpload'])){
+    define('fileUpload' , $_FILES['fileUpload']);
+    if(fileUpload['error'] === UPLOAD_ERR_OK){
+    }else{
+        echo 'error loading file';
+    }
+}else{
+}
+define('chooseItem' , $_POST["chooseItem"]);
+define('pathItem' , $_POST["pathItem"]);
+define('nameItem' , $_POST["nameItem"]);
+define('emailUser' , $_POST['userEmail']);
 
 $dotName = ".";
 $errorName = "";
@@ -9,11 +19,11 @@ $errorPath = "";
 $errorPath2 = "";
 
 
-if(empty($_POST["nameItem"])){
+if(empty(nameItem)){
     $errorName = "<p> Name is empty </p>";
-}else if(empty($_POST["pathItem"])){
+}else if(empty(pathItem)){
     $errorPath = "<p> Path is empty </p>";
-}else if(strpos($_POST["nameItem"], '.') != false) {
+}else if(strpos(nameItem, '.') != false) {
     $errorName2 = "<p> Name contains a dot </p>";
  }else {
      newItem();
@@ -22,14 +32,12 @@ if(empty($_POST["nameItem"])){
 echo $errorName . $errorPath . $errorName2;
 
 function newItem(){
-$nameItem = $_POST["nameItem"];
-$pathItem = $_POST["pathItem"];
-$folderInfo = 'json/beron@carlota.com.json';
+$folderInfo = 'json/' . emailUser . '.json';
 
 $currentData = file_get_contents($folderInfo);
 $objectJson = json_decode($currentData);
 $arrayJson = (array) $objectJson;
-$pathArray  = explode( "/" , $pathItem);
+$pathArray  = explode( "/" , pathItem);
 $folder = (array)$arrayJson;
 $parentArray = array();
 $pathCount = count($pathArray);
@@ -45,16 +53,30 @@ for( $i = 0 ;$pathCount>$i ; $i++){
     }
 }
     if($createFolder){
-        if(isset($folder[$nameItem])){
-            echo 'Folder or file already exists';
-        }else{
-            $folder[$nameItem] = new stdClass();
+            if(chooseItem == "folder"){
+                if(isset($folder[nameItem])){
+                    echo 'Folder already exists';
+                }else{
+                    $folder[nameItem] = new stdClass();
+                    $folder[nameItem]->Info = new stdClass();
+                    $folder[nameItem]->Info->creation = date('r');
+                }
+            }else{
+                if(isset($folder[nameItem . chooseItem])){
+                    echo 'File already exists';
+                }else{
+                    $folder[nameItem . chooseItem] = new stdClass();
+                    $folder[nameItem . chooseItem]->Info = new stdClass();
+                    $folder[nameItem . chooseItem]->Info->creation = date('r');
+                    $folder[nameItem . chooseItem]->Info->size = fileUpload['size'];
+                    move_uploaded_file(fileUpload['tmp_name'],'src/' . implode('_',$pathArray) . '_' . nameItem . chooseItem);
+                }
+            }
             array_unshift($parentArray,$folder);
             for($i = 0; $pathCount>$i ; $i++){
                 $parentArray[$i+1][$pathArray[$pathCount-(1+$i)]] = $parentArray[$i];
             }
             file_put_contents($folderInfo, json_encode(end($parentArray)));
             echo 'Folder or file created';
-        }
     }
 }

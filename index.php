@@ -113,10 +113,10 @@
                             <label for="input-path">Select folder</label>
                             <input type="text" class="form-control" id="input-path">
                           </div>
-                          <div class="form-group">
+                          <form id="upload-file" class="form-group" action="uploadFile.php" enctype="multipart/form-data" method="POST">
                             <label for="exampleFormControlFile1">Update a file</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                          </div>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="fileUpload">
+                          </form>
                     </div>
                     <div class="modal-footer">
                       <button id="create-new-item" type="button" class="btn btn-primary">Save</button>

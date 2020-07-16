@@ -19,10 +19,10 @@
                     <div class="logo col-1" role="img"></div>
                     <div class="navbar-brand col-4">GreenBox</div>
                 </div>
-                <form class="form-inline col-8 d-flex flex-nowrap">
-                    <input class="form-control bg-light" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success mx-2" type="submit">Search</button>
-                </form>
+                <div class="form-inline col-8 d-flex flex-nowrap">
+                    <input class="form-control bg-light" type="search" placeholder="Search" aria-label="Search" id="search-bar">
+                    <button id="btn-search" class="btn btn-outline-success mx-2" type="submit">Search</button>
+                </div>
                 <div class="searcher"></div>
             </div>
             <div class="row bg-light container-screen">

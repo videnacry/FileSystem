@@ -1,5 +1,6 @@
 //---------------------------directory Navigator------------------------------------
 
+
 let userEmail = "beron@carlota.com"
 let url = "json/" + userEmail + ".json"
 let storage
@@ -222,3 +223,34 @@ $("#create-new-item").click(function(){
 
     })
 })
+
+//------------------------------Search Bar------------------------------------------//
+const search = document.getElementById('search-bar');
+const matchList = document.getElementsByClassName('searcher');
+const btnSearch = document.getElementById('btn-search');
+
+
+btnSearch.addEventListener("click", function(){
+    const searchValue = search.value;
+    if(searchValue === 'Info'){
+
+    }else{
+        for(const searchItem in storage) {
+            if(searchItem.includes(searchValue)){
+                console.log(storage[searchItem]);
+            }if(Object.keys(storage[searchItem]).length>0){
+                findFolders(storage[searchItem],searchValue);
+            }
+        }
+    }
+})
+
+function findFolders(storage, searchValue){
+    for (const searchItem in storage) {
+        if(searchItem.includes(searchValue)){
+            console.log(storage[searchItem]);
+        }if(Object.keys(storage[searchItem]).length>0){
+            findFolders(storage[searchItem],searchValue);
+        }
+    }
+}

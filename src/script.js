@@ -26,6 +26,7 @@ function loadDirectory(){
     $.getJSON(url, function (data, statusText, jqXHR) {
         storage = data
         printFolder(storage, directoryNav)
+        printItem(storage, folderContent)
     })
 }
 function printFolder(pObject, parent) {
@@ -39,12 +40,41 @@ function printFolder(pObject, parent) {
         }
     }
 }
+const imgExtention = ["jpg","png","svg"]
+const docExtention = ["csv","doc","ppt","odt","pdf","txt"]
+const zipExtention = ["zip","rar"]
+const exeExtention = ["exe"]
+const audioExtention = ["mp3"]
+const videoExtention = ["mp4"]
 function printItem(pObject, parent){
     parent.textContent = ""
     if (Object.keys(pObject).length > 0) {
         for (let i in pObject) {
             if (i == "Info") continue
-            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='fas fa-folder-open'></i>&nbsp;" + i + "</a>"))
+            if(!i.includes(".")){
+                $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-folder'></i>&nbsp;" + i + "</a>"))
+            }else{
+                if(imgExtention.includes(i.split(".")[1])){
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-image'></i></i>&nbsp;" + i + "</a>")
+                    .click()
+                    )
+                }else if(docExtention.includes(i.split(".")[1])){
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-alt'></i>&nbsp;" + i + "</a>"))                    
+                }else if(zipExtention.includes(i.split(".")[1])){
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-archive'></i>&nbsp;" + i + "</a>"))                    
+                }else if(audioExtention.includes(i.split(".")[1])){
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-audio'></i>&nbsp;" + i + "</a>")
+                    .click()
+                    )                    
+                }else if(videoExtention.includes(i.split(".")[1])){
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-video'></i>&nbsp;" + i + "</a>")
+                    .click()
+                    )                    
+                }else if(exeExtention.includes(i.split(".")[1])){
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-code'></i>&nbsp;" + i + "</a>"))                    
+                }
+            }                 
+            
         }
     }    
 }
@@ -88,6 +118,7 @@ function printChildren(allowItem=false) {
 
 document.getElementById("directory-reload").addEventListener("click",function(){
     directoryNav.textContent = ""
+    folderContent.textContent = ""
     loadDirectory()
 })
 

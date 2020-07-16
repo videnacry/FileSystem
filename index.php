@@ -42,10 +42,6 @@
                           <li class="list-group-item bg-light border-0 pt-3">Modified</li>
                       </div>
                       <div id="folder-content" class="list-group list-group-flush">
-                        <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
-                        <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
-                        <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
-                        <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                       </div>
                     </ul>
                 </div>

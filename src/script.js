@@ -10,7 +10,7 @@ liHTML.className = "nav-item ml-2"
 let aHTML = document.createElement("a")
 aHTML.style.width = "fit-content"
 aHTML.className = "nav-link"
-aHTML.setAttribute("onclick", "printChildren()")
+aHTML.setAttribute("onclick", "printChildren(true)")
 aHTML.setAttribute("oncontextmenu", "showMiniModal()")
 let caretHTML = document.createElement("i")
 caretHTML.className = "fas fa-caret-right mx-1"
@@ -25,10 +25,10 @@ loadDirectory()
 function loadDirectory(){
     $.getJSON(url, function (data, statusText, jqXHR) {
         storage = data
-        print(storage, directoryNav)
+        printFolder(storage, directoryNav)
     })
 }
-function print(pObject, parent) {
+function printFolder(pObject, parent) {
     if (Object.keys(pObject).length > 0) {
         for (let i in pObject) {
             if (i == "Info" || i.includes(".")) continue
@@ -38,6 +38,15 @@ function print(pObject, parent) {
             parent.appendChild(liHTMLClone)
         }
     }
+}
+function printItem(pObject, parent){
+    parent.textContent = ""
+    if (Object.keys(pObject).length > 0) {
+        for (let i in pObject) {
+            if (i == "Info") continue
+            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='fas fa-folder-open'></i>&nbsp;" + i + "</a>"))
+        }
+    }    
 }
 function getPath(elementHTML) {
     let pathArray = []
@@ -56,10 +65,11 @@ function getFolder(pathArray, pStorage) {
     }
     return folder
 }
-function printChildren() {
+function printChildren(allowItem=false) {
     let open = false
     let parent = event.currentTarget.parentElement
     if (parent.getElementsByTagName("li").length > 0) {
+        folderContent.textContent = ""
         for (let i in parent.getElementsByTagName("li")) {
             $(parent).find("li").remove()
         }
@@ -67,7 +77,10 @@ function printChildren() {
         open = true
         let pathArray = getPath(parent)
         let folder = getFolder(pathArray, storage)
-        print(folder, parent)
+        if(allowItem){
+            printItem(folder, folderContent)
+        }
+        printFolder(folder, parent)
     }
 }
 
@@ -260,7 +273,7 @@ btnSearch.addEventListener("click", function(){
     }else{
         for(const searchItem in storage) {
             if(searchItem.includes(searchValue) && searchItem != 'Info'){
-                $(folderContent).append($("<a class=list-group-item list-group-item-action><i class=fas fa-folder-open></i>&nbsp;" + searchItem + "</a>"))
+                $(folderContent).append($("<a class='list-group-item list-group-item-action'><i class='fas fa-folder-open'></i>&nbsp;" + searchItem + "</a>"))
             }if(Object.keys(storage[searchItem]).length>0 && searchItem != 'Info'){
                 findFolders(storage[searchItem],searchValue);
             }
@@ -271,7 +284,7 @@ btnSearch.addEventListener("click", function(){
 function findFolders(pStorage, searchValue){
     for (const searchItem in pStorage) {
         if(searchItem.includes(searchValue) && searchItem != 'Info'){
-            $(folderContent).append($("<a class=list-group-item list-group-item-action><i class=fas fa-folder-open></i>&nbsp;" + searchItem + "</a>"))
+            $(folderContent).append($("<a class='list-group-item list-group-item-action'><i class='fas fa-folder-open'></i>&nbsp;" + searchItem + "</a>"))
         }if(Object.keys(pStorage[searchItem]).length>0 && searchItem != 'Info'){
             findFolders(pStorage[searchItem],searchValue);
         }

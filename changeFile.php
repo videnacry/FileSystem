@@ -1,7 +1,8 @@
 <?php
     $selectedItem = $_POST["selectedItem"];
     $pathArray = explode("/",$_POST["path"]);
-    $storageJSON = file_get_contents('json/' . $_POST["userEmail"]);
+    $jsonURL = 'json/' . $_POST["userEmail"] . '.json';
+    $storageJSON = file_get_contents($jsonURL);
     $storageObject = json_decode($storageJSON);
     $item = $storageObject;
     $response = new stdClass();
@@ -21,8 +22,8 @@
             $item->{$_POST["newName"]} = $item->{$selectedItem};
             unset($item->{$selectedItem});
         }
-        file_put_contents(json_encode($storageObject));
-        echo json_encode($response);
+        file_put_contents($jsonURL,json_encode($storageObject));
     }else{
         $response->reachFile = 'The file wasn\'t find, please reload to try again.';
     }
+    echo json_encode($response);

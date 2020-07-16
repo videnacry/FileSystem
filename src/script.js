@@ -109,8 +109,14 @@ function showMiniModal() {
 
 //------------------------------Rename/Remove Item in Storage--------------------------------
 function renameRemoveRequest(url, selectedItem, path, newName, userEmail, erase){
+    console.log(url)
+    console.log(path)
+    console.log(selectedItem)
+    console.log(newName)
+    console.log(userEmail)
+    console.log(erase)
     $.ajax(
-        {url:url,
+        {url:"changeFile.php",
         method:"post",
         data:{
             selectedItem:selectedItem,
@@ -119,20 +125,21 @@ function renameRemoveRequest(url, selectedItem, path, newName, userEmail, erase)
             userEmail:userEmail,
             delete:erase
         },success:function(data,statusText,jqXHR){
-            console.log(data)
+            if(JSON.parse(data).reachPath == "undefined"){
+                alert(JSON.parse(data).reachPath)
             }
-        })
+        }
+    })
 }
 
 function renameRemoveEvent(erase){
-    let newName = newName.value
     let target = itemSelected.parentElement
     let parent = target.parentElement
     let targetName = target.dataset.key
     let pathArray = getPath(parent) 
-    renameRemoveRequest(url,targetName,pathArray.join("/"),newName,erase)
+    renameRemoveRequest(url,targetName,pathArray.join("/"),newName.value,userEmail,erase)
     folder = getFolder(pathArray, storage)
-    renameRemoveItem(folder,targetName,"beorn",erase)
+    renameRemoveItem(folder,targetName,newName.value,erase)
 }
 
 function renameRemoveItem(parent, name, newName, erase){
@@ -148,6 +155,7 @@ function renameRemoveItem(parent, name, newName, erase){
             }
         }
     }
+    console.log(storage)
 }
 
 //---------------------------------Modal New Item in directory---------------------------------
@@ -182,6 +190,7 @@ $("body").keyup(function(){
         newName.style.display = "none"
         newName.value = ""
         closeModals.style.display = "none"
+        contextElement.classList.remove("active")
     }
 })
 

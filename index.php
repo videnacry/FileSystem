@@ -25,23 +25,53 @@
                 </form>
                 <div class="searcher"></div>
             </div>
-            <div class="row">
+            <div class="row bg-light container-screen">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
-                    <div class="col-12 justify-content-center d-flex p-4"><button id="button-new-item" class="btn btn-success btn-block col-11 col-sm-7">New</button></div>                
+                    <div class="col-12 justify-content-center d-flex p-4"><button id="button-new-item" class="btn btn-success btn-block col-11 col-sm-7">New</button></div>
+                    <i id = "directory-reload" class="fas fa-redo-alt btn absolute-right"></i>
                     <ul id="directory-nav" class="navbar-nav ml-2">
                       <input id='new-name' type='text' value=''/>
                     </ul>
                 </div>
                 <div class="col-6 m-0 p-0 shadow-sm" role="main">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item bg-light pt-3">Name Label Size Modified</li>
+                    <div class="bg-light d-flex justify-content-between">
+                        <li class="col-8 list-group-item border-0 bg-light pt-3">Name</li>
+                        <li class="list-group-item border-0 bg-light pt-3">Label</li>
+                        <li class="list-group-item border-0 bg-light pt-3">Size</li>
+                        <li class="list-group-item bg-light border-0 pt-3">Modified</li>
+                    </div>
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                         <a class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>&nbsp;FolderGrandchild</a>
                     </ul>
                 </div>
-            </div><!-- Modal New -->
+                <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
+                <ul class="list-group file-description">
+                <li class="name-file list-group-item d-flex justify-content-between align-items-center">
+                    Beron.xls
+                  </li>
+                  <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
+                    Label
+                    <span class="badge badge-primary badge-pill">APROVED</span>
+                  </li>
+                  <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
+                    Type
+                    <span class="badge badge-primary badge-pill">MS Excel Document</span>
+                  </li>
+                  <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
+                    Size
+                    <span class="badge badge-primary badge-pill">38 KB</span>
+                  </li>
+                  <li class="pb-4 list-group-item d-flex justify-content-between align-items-center">
+                    Modified
+                    <span class="badge badge-primary badge-pill">Feb 23, 2016</span>
+                  </li>
+                </ul>
+                </div>
+            </div>
+            <!-- Modal New -->
             <div id="modal-new-item" class="modal-new" tabindex="-1" role="dialog">
               <div class="modal-close-bg"></div>
                 <div class="modal-dialog" role="document">
@@ -82,6 +112,10 @@
                           <div class="form-group">
                             <label for="input-path">Select folder</label>
                             <input type="text" class="form-control" id="input-path">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlFile1">Update a file</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
                           </div>
                     </div>
                     <div class="modal-footer">

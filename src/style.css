@@ -11,8 +11,8 @@ a{
 }
 
 .modal-close-bg{
-  position:absolute;
-  z-index:-1;
+  position:fixed;
+  z-index:1;
   opacity:0.5;
   background-color: white;
   height:100vh;
@@ -50,6 +50,7 @@ a{
     padding:8px 10px;
     font-size:15px;
     color:#eee;
+    cursor:pointer;
   }
   #context-menu .item:hover {
     background:#555;

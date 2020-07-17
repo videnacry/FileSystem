@@ -26,7 +26,7 @@ function loadDirectory(){
     $.getJSON(url, function (data, statusText, jqXHR) {
         storage = data
         printFolder(storage, directoryNav)
-        printItem(storage, folderContent)
+        printItems(storage, folderContent)
     })
 }
 function printFolder(pObject, parent) {
@@ -47,71 +47,75 @@ const exeExtention = ["exe"]
 const audioExtention = ["mp3"]
 const videoExtention = ["mp4"]
 const playMedia = document.getElementById("play-media")
-function printItem(pObject, parent, pPath = ""){
+function printItems(pObject, parent){
     parent.textContent = ""
     if (Object.keys(pObject).length > 0) {
         for (let i in pObject) {
             if (i == "Info") continue
-            if(!i.includes(".")){
-                $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-folder'></i>&nbsp;" + i + "</a>"))
-            }else{
-                if(imgExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-image'></i></i>&nbsp;" + i + "</a>")
-                    .click(function(){
-                        closeModals.style.display = "block"
-                        $(playMedia).fadeIn(500).css("background-image","url('src/img/" + pPath + "_" + i + "')")
-                        showData(pObject[i]['Info'],i)
-                    })
-                    )
-                }else if(docExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-alt'></i>&nbsp;" + i + "</a>"))
-                    .click(function(){
-                        showData(pObject[i]['Info'],i)
-                    })                    
-                }else if(zipExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-archive'></i>&nbsp;" + i + "</a>"))
-                    .click(function(){
-                        showData(pObject[i]['Info'],i)
-                    })                    
-                }else if(audioExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-audio'></i>&nbsp;" + i + "</a>")
-                    .click(function(){
-                        closeModals.style.display = "block"
-                        $(playMedia).fadeIn(500).append($('<audio autoplay controls  src="src/img/' + pPath + '_' + i + '" </audio>'))
-                        .css("background-image","url('src/img/Profile.jpg')")
-                        showData(pObject[i]['Info'],i)
-                    })
-                    )                    
-                }else if(videoExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-video'></i>&nbsp;" + i + "</a>")
-                    .click(function(){
-                        closeModals.style.display = "block"
-                        $(playMedia).fadeIn(500).append($('<video autoplay controls  src="src/img/' + pPath + '_' + i + '" </video>'))
-                        showData(pObject[i]['Info'],i)
-                    })
-                    )                    
-                }else if(exeExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-code'></i>&nbsp;" + i + "</a>"))
-                    .click(function(){
-                        showData(pObject[i]['Info'],i)
-                    })                    
-                }
-            }                 
-            
-        }
-
-        function showData(item,name){
-            item1 = item
-            dataName.textContent = name
-            dataCreation.textContent = item['Creation']
-            dataLabel.textContent = item['Label']
-            const size = item['Size']
-            dataSize.textContent = size > 1000000 ? (size / 1000000).toFixed(2) + 'Mb' : (size / 1000).toFixed(2) + 'Kb'
-            dataType.textContent = item['Type']
+            printItem(i,pObject,parent)
         }
     }    
 }
-let item1
+
+function showData(item,name){
+    dataName.textContent = name
+    dataCreation.textContent = item['Creation']
+    dataLabel.textContent = item['Label']
+    const size = item['Size']
+    dataSize.textContent = size > 1000000 ? (size / 1000000).toFixed(2) + 'Mb' : (size / 1000).toFixed(2) + 'Kb'
+    dataType.textContent = item['Type']
+}
+
+function printItem(i,pObject,parent){
+    if(!i.includes(".")){
+        $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-folder'></i>&nbsp;" + i + "</a>"))
+    }else{
+        if(imgExtention.includes(i.split(".")[1])){
+            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-image'></i></i>&nbsp;" + i + "</a>")
+            .click(function(){
+                closeModals.style.display = "block"
+                $(playMedia).fadeIn(500).css("background-image","url('" + pObject[i]['Info']['Path'] + "')")
+                showData(pObject[i]['Info'],i)
+            })
+            )
+        }else if(docExtention.includes(i.split(".")[1])){
+            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-alt'></i>&nbsp;" + i + "</a>")
+                .click(function(){
+                    showData(pObject[i]['Info'],i)
+                })                    
+            )
+        }else if(zipExtention.includes(i.split(".")[1])){
+            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-archive'></i>&nbsp;" + i + "</a>")
+                .click(function(){
+                    showData(pObject[i]['Info'],i)
+                })                    
+            )
+        }else if(audioExtention.includes(i.split(".")[1])){
+            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-audio'></i>&nbsp;" + i + "</a>")
+            .click(function(){
+                closeModals.style.display = "block"
+                $(playMedia).fadeIn(500).append($('<audio autoplay controls  src="' + pObject[i]['Info']['Path'] + '" </audio>'))
+                .css("background-image","url('src/img/Profile.jpg')")
+                showData(pObject[i]['Info'],i)
+            })
+            )                    
+        }else if(videoExtention.includes(i.split(".")[1])){
+            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-video'></i>&nbsp;" + i + "</a>")
+            .click(function(){
+                closeModals.style.display = "block"
+                $(playMedia).fadeIn(500).append($('<video autoplay controls  src="' + pObject[i]['Info']['Path'] + '" </video>'))
+                showData(pObject[i]['Info'],i)
+            })
+            )                    
+        }else if(exeExtention.includes(i.split(".")[1])){
+            $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-code'></i>&nbsp;" + i + "</a>")
+                .click(function(){
+                    showData(pObject[i]['Info'],i)
+                })                    
+            )
+        }
+    }                  
+}
 const dataName = document.getElementById("data-name")
 const dataSize = document.getElementById("data-size")
 const dataCreation = document.getElementById("data-creation")
@@ -148,7 +152,7 @@ function printChildren(allowItem=false) {
         let pathArray = getPath(parent)
         let folder = getFolder(pathArray, storage)
         if(allowItem){
-            printItem(folder, folderContent, pathArray.join("_"))
+            printItems(folder, folderContent, pathArray.join("_"))
         }
         printFolder(folder, parent)
     }
@@ -340,7 +344,7 @@ btnSearch.addEventListener("click", function(){
     }else{
         for(const searchItem in storage) {
             if(searchItem.includes(searchValue) && searchItem != 'Info'){
-                $(folderContent).append($("<a class='list-group-item list-group-item-action'><i class='fas fa-folder-open'></i>&nbsp;" + searchItem + "</a>"))
+                printItem(searchItem,storage,folderContent)
             }if(Object.keys(storage[searchItem]).length>0 && searchItem != 'Info'){
                 findFolders(storage[searchItem],searchValue);
             }
@@ -351,7 +355,7 @@ btnSearch.addEventListener("click", function(){
 function findFolders(pStorage, searchValue){
     for (const searchItem in pStorage) {
         if(searchItem.includes(searchValue) && searchItem != 'Info'){
-            $(folderContent).append($("<a class='list-group-item list-group-item-action'><i class='fas fa-folder-open'></i>&nbsp;" + searchItem + "</a>"))
+            printItem(searchItem,pStorage,folderContent)
         }if(Object.keys(pStorage[searchItem]).length>0 && searchItem != 'Info'){
             findFolders(pStorage[searchItem],searchValue);
         }

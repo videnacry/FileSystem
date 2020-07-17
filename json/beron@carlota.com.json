@@ -11,10 +11,11 @@
             "Accounting": {
                 "Document.txt": {
                     "Info": {
-                        "Size": {},
-                        "Type": {},
-                        "Creation": {},
-                        "Modified": {}
+                        "Path":"",
+                        "Creation": "Thu, 16 Jul 2020 22:39:23 +0200",
+                        "Label": "Aproved",
+                        "Type": ".txt",
+                        "Size": 401881
                     }
                 },
                 "Info": {
@@ -28,6 +29,7 @@
             },
             "beron.png": {
                 "Info": {
+                    "Path":"src/img/myFiles_Office_beron.png",
                     "Creation": "Thu, 16 Jul 2020 22:27:48 +0200",
                     "Label": "Aproved",
                     "Type": ".png",
@@ -36,6 +38,7 @@
             },
             "5ant.mp3": {
                 "Info": {
+                    "Path":"src/img/myFiles_Office_5ant.mp3",
                     "Creation": "Thu, 16 Jul 2020 22:39:23 +0200",
                     "Label": "Aproved",
                     "Type": ".mp3",

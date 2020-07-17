@@ -1,5 +1,8 @@
+let usernames = ["beron@carlota.com","storage"]
 
-
+if(!usernames.includes(document.getElementById("user-email").textContent)){
+    location.href = "login.php"
+}
     
 let userEmail = document.getElementById("user-email").textContent
 

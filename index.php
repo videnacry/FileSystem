@@ -15,6 +15,9 @@
         <body>
           <div id="close-modals" class="modal-close-bg"></div>
           <div id="play-media" class="play"></div>
+
+          <!-- Header -->
+
             <div class="p-4 shadow-sm sticky-top row navbar-light" role="heading">
                 <div class="d-flex flex-nowrap col-4 col-sm-3">
                     <div class="logo col-1" role="img"></div>
@@ -26,6 +29,9 @@
                 </div>
                 <div class="searcher"></div>
             </div>
+
+          <!-- Item data -->
+
             <div class="row bg-light container-screen">
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
                     <div class="col-12 justify-content-center d-flex p-4"><button id="button-new-item" class="btn btn-success btn-block col-11 col-sm-7">New</button></div>
@@ -47,27 +53,27 @@
                     </ul>
                 </div>
                 <div class="navbar navbar-light bg-light col-6 col-sm-4 col-md-3 col-l-2" role="navigation">
-                <ul class="list-group file-description">
-                <li class="name-file list-group-item d-flex justify-content-between align-items-center">
-                    Beron.xls
-                  </li>
-                  <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
-                    Label
-                    <span class="badge badge-success badge-pill">APROVED</span>
-                  </li>
-                  <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
-                    Type
-                    <span class="badge badge-success badge-pill">MS Excel Document</span>
-                  </li>
-                  <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
-                    Size
-                    <span class="badge badge-success badge-pill">38 KB</span>
-                  </li>
-                  <li class="pb-4 list-group-item d-flex justify-content-between align-items-center">
-                    Modified
-                    <span class="badge badge-success badge-pill">Feb 23, 2016</span>
-                  </li>
-                </ul>
+                  <ul class="list-group file-description">
+                    <li class="name-file list-group-item d-flex justify-content-between align-items-center">
+                      <span id="data-name"> Beron.xls </span>
+                    </li> 
+                    <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
+                      Label
+                      <span id="data-label" class="badge badge-success badge-pill">APROVED</span>
+                    </li>
+                    <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
+                      Type
+                      <span id="data-type" class="badge badge-success badge-pill">MS Excel Document</span>
+                    </li>
+                    <li class="border-bottom-0 list-group-item d-flex justify-content-between align-items-center">
+                      Size
+                      <span id="data-size" class="badge badge-success badge-pill">38 KB</span>
+                    </li>
+                    <li class="pb-4 list-group-item d-flex justify-content-between align-items-center">
+                      Creation
+                      <span id="data-creation" class="badge badge-success badge-pill">Feb 23, 2016</span>
+                    </li>
+                  </ul>
                 </div>
             </div>
             <!-- Modal New -->

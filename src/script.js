@@ -60,18 +60,26 @@ function printItem(pObject, parent, pPath = ""){
                     .click(function(){
                         closeModals.style.display = "block"
                         $(playMedia).fadeIn(500).css("background-image","url('src/img/" + pPath + "_" + i + "')")
+                        showData(pObject[i]['Info'],i)
                     })
                     )
                 }else if(docExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-alt'></i>&nbsp;" + i + "</a>"))                    
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-alt'></i>&nbsp;" + i + "</a>"))
+                    .click(function(){
+                        showData(pObject[i]['Info'],i)
+                    })                    
                 }else if(zipExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-archive'></i>&nbsp;" + i + "</a>"))                    
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-archive'></i>&nbsp;" + i + "</a>"))
+                    .click(function(){
+                        showData(pObject[i]['Info'],i)
+                    })                    
                 }else if(audioExtention.includes(i.split(".")[1])){
                     $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-audio'></i>&nbsp;" + i + "</a>")
                     .click(function(){
                         closeModals.style.display = "block"
                         $(playMedia).fadeIn(500).append($('<audio autoplay controls  src="src/img/' + pPath + '_' + i + '" </audio>'))
                         .css("background-image","url('src/img/Profile.jpg')")
+                        showData(pObject[i]['Info'],i)
                     })
                     )                    
                 }else if(videoExtention.includes(i.split(".")[1])){
@@ -79,16 +87,37 @@ function printItem(pObject, parent, pPath = ""){
                     .click(function(){
                         closeModals.style.display = "block"
                         $(playMedia).fadeIn(500).append($('<video autoplay controls  src="src/img/' + pPath + '_' + i + '" </video>'))
+                        showData(pObject[i]['Info'],i)
                     })
                     )                    
                 }else if(exeExtention.includes(i.split(".")[1])){
-                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-code'></i>&nbsp;" + i + "</a>"))                    
+                    $(parent).append($("<a class='list-group-item list-group-item-action'><i class='far fa-file-code'></i>&nbsp;" + i + "</a>"))
+                    .click(function(){
+                        showData(pObject[i]['Info'],i)
+                    })                    
                 }
             }                 
             
         }
+
+        function showData(item,name){
+            item1 = item
+            dataName.textContent = name
+            dataCreation.textContent = item['Creation']
+            dataLabel.textContent = item['Label']
+            const size = item['Size']
+            dataSize.textContent = size > 1000000 ? (size / 1000000).toFixed(2) + 'Mb' : (size / 1000).toFixed(2) + 'Kb'
+            dataType.textContent = item['Type']
+        }
     }    
 }
+let item1
+const dataName = document.getElementById("data-name")
+const dataSize = document.getElementById("data-size")
+const dataCreation = document.getElementById("data-creation")
+const dataLabel = document.getElementById("data-label")
+const dataType = document.getElementById("data-type")
+
 function getPath(elementHTML) {
     let pathArray = []
     let target = elementHTML

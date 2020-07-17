@@ -23,11 +23,14 @@
                     <div class="logo col-1" role="img"></div>
                     <div class="navbar-brand col-4">GreenBox</div>
                 </div>
-                <div class="form-inline col-8 d-flex flex-nowrap">
+                <div class="form-inline col-5 d-flex flex-nowrap">
                     <input class="form-control bg-light" type="search" placeholder="Search" aria-label="Search" id="search-bar">
                     <button id="btn-search" class="btn btn-outline-success mx-2" type="submit">Search</button>
                 </div>
-                <div class="searcher"></div>
+                <div class="navbar-brand col-3 d-flex flex-nowrap">
+                  <p id="user-email"><?php echo $_POST['logIn']?></p>
+                  <a class="mx-3" href="login.php">Log out</a>
+                </div>
             </div>
 
           <!-- Item data -->

@@ -1,7 +1,10 @@
+
+
+    
+let userEmail = document.getElementById("user-email").textContent
+
 //---------------------------directory Navigator------------------------------------
 
-
-let userEmail = "beron@carlota.com"
 let url = "json/" + userEmail + ".json"
 let storage
 let directoryNav = document.getElementById("directory-nav")

@@ -17,12 +17,15 @@ audio{
   position: absolute;
   top:80%;
 }
-.logo{
+.logo,.logo-log{
     background-image:url("https://findicons.com/files/icons/734/phuzion/256/download_box.png");
     background-size:contain;
     background-repeat:no-repeat;
 }
-
+.logo-log{
+  height: 30vw;
+  width:30vw;
+}
 .modal-close-bg{
   position:fixed;
   z-index:1;

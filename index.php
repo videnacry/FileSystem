@@ -8,7 +8,7 @@
             <link rel="stylesheet" type="text/css" href="src/style.css"/>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" 
                   integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous"/>
-            <script src="node_modules/jquery/dist/jquery.js"></script>
+            <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
             <script src="src/script.js" defer></script>
             <title>LOCAL_FILLESYSTEM</title>
         </head>

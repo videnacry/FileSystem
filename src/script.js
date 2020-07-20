@@ -334,6 +334,7 @@ $("#create-new-item").click(function(){
     
         })
     }
+    modalNewItem.style.display = "none"
 })
 
 //------------------------------Search Bar------------------------------------------//

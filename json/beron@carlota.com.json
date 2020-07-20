@@ -11,7 +11,7 @@
             "Accounting": {
                 "Document.txt": {
                     "Info": {
-                        "Path":"",
+                        "Path": "",
                         "Creation": "Thu, 16 Jul 2020 22:39:23 +0200",
                         "Label": "Aproved",
                         "Type": ".txt",
@@ -20,16 +20,20 @@
                 },
                 "Info": {
                     "Size": {}
-                }
-            },
-            "Resources": {
-                "Info": {
-                    "creation": "Thu, 16 Jul 2020 19:51:02 +0200"
+                },
+                "test2.png": {
+                    "Info": {
+                        "Creation": "Fri, 17 Jul 2020 12:14:02 +0200",
+                        "Label": "Aproved",
+                        "Type": ".png",
+                        "Size": 143442,
+                        "Path": "src\/img\/myFiles_Office_Accounting_test2.png"
+                    }
                 }
             },
             "beron.png": {
                 "Info": {
-                    "Path":"src/img/myFiles_Office_beron.png",
+                    "Path": "src\/img\/myFiles_Office_beron.png",
                     "Creation": "Thu, 16 Jul 2020 22:27:48 +0200",
                     "Label": "Aproved",
                     "Type": ".png",
@@ -38,11 +42,27 @@
             },
             "5ant.mp3": {
                 "Info": {
-                    "Path":"src/img/myFiles_Office_5ant.mp3",
+                    "Path": "src\/img\/myFiles_Office_5ant.mp3",
                     "Creation": "Thu, 16 Jul 2020 22:39:23 +0200",
                     "Label": "Aproved",
                     "Type": ".mp3",
                     "Size": 4018814
+                }
+            },
+            "carlota.png": {
+                "Info": {
+                    "Path": "src\/img\/myFiles_Office_carlota.png",
+                    "Creation": "Fri, 17 Jul 2020 11:58:09 +0200",
+                    "Label": "Aproved",
+                    "Type": ".png",
+                    "Size": 601602
+                }
+            },
+            "carlota2": {
+                "Info": {
+                    "Creation": "Fri, 17 Jul 2020 11:57:22 +0200",
+                    "Label": "Aproved",
+                    "Type": "Folder"
                 }
             }
         },
